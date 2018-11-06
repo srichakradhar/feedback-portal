@@ -1,0 +1,53 @@
+/*.dashboardDatabases{ 
+  border: 1px solid lightgrey;
+  border-radius: 20px;
+  text-align: center;
+  margin-top:4%;
+  margin-left: 15%;
+  cursor: pointer;
+}
+
+.dbname{
+    font-size: 120%;
+    color: rgb(0, 120, 300);
+    margin-left: 20%;
+    cursor: pointer;
+}*/
+
+.dashdb
+{
+  margin-left: 3%;
+  width:22%;
+  margin-top: 2%;
+}
+.fontintent
+{
+  font-size:105% !important;
+}
+.classified
+{
+color: #269c10;
+}
+.misclassified
+{
+  color: #ea5d1f;
+}
+.unclassified
+{
+  color: #d02652;
+}
+.paneldb
+{
+  background-color: #c6eafe;
+  color: #074a83;
+  font-size: 120%;
+}
+.hand
+{
+  cursor: pointer;
+}
+.btnclass
+{
+  border-width: 2px;
+border-radius: 20px;
+}

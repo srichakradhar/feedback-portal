@@ -1,0 +1,33 @@
+<br/>
+<div class="col-xs-2 dashdb" *ngFor="let data of dbData">
+    <div class="panel hand">
+      <div class="panel-heading paneldb text-center" [routerLink]="['//header//dashboard/',data.database]">
+      <b>{{data.dbName}}</b></div>
+      <div class="panel-body" [routerLink]="['//header//dashboard/',data.database]">
+      <mwl-gauge
+      [max]="100"
+      [dialStartAngle]="-90"
+      [dialEndAngle]="-90.001"
+      [value]="data.accuracy"
+      [animated]="true"
+      [animationDuration]="1">%
+    </mwl-gauge>
+  <h5 class="text-center">Accuracy (in %)</h5>
+  <br/>
+  <form class="form-horizontal">
+  <div class="form-group form-group-sm">
+    <label class="control-label col-xs-8 classified fontintent">Matched Intents:</label>
+     <label class="control-label col-xs-2"><button class="btn btn-default btn-xs btnclass">{{data.classifieds}}</button></label>
+  </div>
+  <div class="form-group form-group-sm">
+     <label class="control-label col-xs-8 misclassified fontintent">Mismatched Intents:</label>
+     <label class="control-label col-xs-2"><button class="btn btn-default btn-xs btnclass">{{data.misclassifieds}}</button></label>
+  </div>
+  <div class="form-group form-group-sm"> 
+  <label class="control-label col-xs-8 unclassified fontintent">Unmatched Intents:</label>
+  <label class="control-label col-xs-2"><button class="btn btn-default btn-xs btnclass">{{data.unclassifieds}}</button></label>
+  </div>
+</form>
+  </div>
+    </div>
+</div>

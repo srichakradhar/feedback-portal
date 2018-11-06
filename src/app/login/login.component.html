@@ -1,0 +1,67 @@
+<!--<h2>Login</h2>
+
+   <form class="form-horizontal logForm well" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+     <br/><br/>
+  <div class="form-group form-group-lg">
+    <label class="control-label col-xs-3" for="user">User Name:</label>
+    <div class="col-xs-9">
+      <input type="text" class="form-control" id="user" placeholder="Enter UserName" name="user" [(ngModel)]="user" >
+    </div>
+  </div>
+  <br/>
+  <div class="form-group form-group-lg">
+    <label class="control-label col-xs-3" for="pwd">Password:</label>
+    <div class="col-xs-9"> 
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" [(ngModel)]="pwd">
+    </div>
+  </div>
+
+  <div class="form-group form-group-lg"> 
+    <div class="col-xs-offset-3 col-xs-9">
+      <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="form-group form-group-lg"> 
+    <div class="col-xs-offset-3 col-xs-9">
+      <button type="submit" class="btn btn-primary btLogin">Login</button>
+    </div>
+  </div>
+</form> -->
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <img src="assets/images/login_bg.jpg" class="img img-responsive imgLogin">  
+ <div class="spac well">
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+<br/>
+  <div class="form-group">	
+      <i class="fa fa-user" style="font-size:2em"></i>
+  <input type="text" class="form-control loginText" id="user" placeholder="Enter UserName" name="user" [(ngModel)]="user" >
+</div>
+<br/>
+  <div class="form-group">
+  <i class="fa fa-lock" style="font-size:2em"></i>
+   <input type="password" class="form-control loginText" id="pwd" placeholder="Enter password" name="pwd" [(ngModel)]="pwd">
+</div>
+ <!--<div class="form-group"> 
+      <div class="checkbox">
+       <label><input type="checkbox" class="text-primary"> Remember me</label>
+      </div>
+  </div>-->
+
+ 
+
+  <button type="submit" class= "btLogin">Login</button> 
+  
+     <!--<div style="margin-top:7%"><b>Forgot Password?</b><span class="pull-right" style="margin-right: 5%"><b>Register?</b></span></div>   -->
+ 
+  
+</form>
+ 
+</div>
+
+

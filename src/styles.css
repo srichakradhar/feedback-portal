@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+/*body{
+  font-family: serif;
+}*/
+.cont
+{
+  padding-left: 0%;   
+  padding-right: 0%;
+}
+mwl-gauge {
+  width: 150px;
+  height: 150px;
+  display: block;
+  padding: 10px;
+  margin-left: 17%;
+  margin-top: 5%;
+}
+mwl-gauge > .gauge > .dial {
+  stroke: #f3f3f3;
+  stroke-width: 2;
+  fill: rgba(0,0,0,0);
+}
+mwl-gauge > .gauge > .value {
+  stroke: #0883c9;
+  stroke-width: 6;
+  fill: rgba(0,0,0,0);
+}
+mwl-gauge > .gauge > .value-text {
+  fill: #074a83;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.loader {
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 12px solid rgb(0,120,300);
+  border-bottom: 12px solid rgb(0,120,300);
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  margin-left: 45%;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

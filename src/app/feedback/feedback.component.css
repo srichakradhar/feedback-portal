@@ -1,0 +1,78 @@
+.dropRow
+{
+    margin-top: 2%;
+}
+table
+{
+    font-size:100%;
+    width:92%;
+    margin-left: 5%;
+    height:50%;
+}
+#search
+{
+    display:inline;
+    width: 45%;
+    margin-left: 12%;
+}
+#tabhead
+{
+    display:inline;
+    width: 35%;
+    margin-right: 2%;
+}
+tr>th
+{
+    background-color: #afdafd;
+}
+.savebtn
+{
+    background-color: white; 
+   color: #5e5e5e;
+   border: 1px solid #979797;
+   border-radius: 15px;
+   width:25%;
+}
+.trainbtn
+{
+    background-color: white; 
+   color: #5e5e5e;
+   border: 1px solid #979797;
+   border-radius: 15px;
+   width:25%;
+   /*margin-left: 1% !important;*/
+}
+.testbtn
+{
+   background-color: white; 
+   color: #5e5e5e;
+   border: 1px solid #979797;
+   border-radius: 15px;
+   width:25%;
+    /*margin-left: 1% !important;*/
+}
+.savetraintest
+{
+    margin-left: 10%;
+}
+.pageNo
+{
+    margin-left: 13%;
+}
+.page
+{
+    margin-left: 20%;
+}
+.pagination
+{
+    margin-top: 0% !important;
+    margin-bottom: 0% !important;
+}
+button:hover, button:focus {
+  background-color: #2578bf;
+  color: white;
+}
+a:hover{
+    cursor: pointer;
+}
+

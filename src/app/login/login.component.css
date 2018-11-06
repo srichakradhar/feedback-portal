@@ -1,0 +1,48 @@
+/*.logForm
+{
+    margin-top: 3%;
+    width:50%;
+    margin-left: 25%;
+}*/
+.btLogin
+{
+    /*padding-left: 9%;
+    padding-right: 9%;
+    font-size: 125%;*/
+    width:40%; 
+    height:3em; 
+    border-radius:20px;
+    /*background: linear-gradient(#2c38d3, #521fed); */
+    background-color: #084b82;
+    opacity:0.8; 
+    color:white !important; 
+    margin-left:30%; 
+    margin-top: 5%; 
+    font-size: 1.2em;
+}
+.spac {
+/*    padding: 43px 35px 40px;*/
+    position: absolute;
+    top:30%;
+    left:62%;
+    width:27%;
+    height: 43%;
+    /*opacity: 0.85;*/
+    border-radius: 15px;
+}
+.imgLogin
+{
+    height: 100vh;
+    width:207vh;
+}
+.loginText
+{
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent; 
+    font-size: 1.3em; 
+    height:2.3em; 
+    display:inline; 
+    width:80%;
+    margin-left: 5%;
+}

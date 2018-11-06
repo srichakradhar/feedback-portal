@@ -1,0 +1,184 @@
+<div class="container-fluid">
+  <br/>
+<div class="row">
+ <form class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label col-xs-2" for="database">Bots:</label>
+    <div class="col-xs-2">
+        <select id="databases" name="databases" [(ngModel)]='databases' class='form-control' (ngModelChange)="getCollections(databases)" >
+            <option value="">--Select--</option>
+            <option *ngFor="let data of dbData" [value]="data.database" >{{data.dbName}}</option>            
+        </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-xs-2" for="collections">Intents:</label>
+    <div class="col-xs-2">      
+        <select id="collections" name="collections" [(ngModel)]='collections' class='form-control' (ngModelChange)="getFeedbackData(collections,databases)">
+            <option value="">--Select--</option>
+           <option *ngFor="let data of clData" [value]="data.value" >{{data.name}}</option>          
+        </select>
+    </div>
+  </div>
+</form>
+</div>
+
+<br/>
+<div *ngIf="collections!='Select'"  class="row">
+       <div class="col-xs-8">
+          <label style="margin-left:6%">Upload Excel/CSV:<input name="feedbackexcel" type="file" style="display:inline; width:65%; margin-left:1%"></label>
+        <!--<img src="assets/images/excel.png" (click)="generateExcel()" alt="" class="img-responsive" style="display:inline; width:5%;margin-left:14%">-->
+        <!--<a class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span> Upload</a>-->
+          <a class="btn-primary btn" (click)="generateExcel()"><span class="glyphicon glyphicon-download"></span> Download</a>    
+        </div>
+         <div class="col-xs-4">
+            <input id="search" [(ngModel)]="searchText" placeholder="search text goes here" class="form-control">
+              <select id="tabhead" name="searchdrop" [(ngModel)]='searchdrop' class='form-control'>
+            <option value="">--Select--</option>
+           <option *ngFor="let data of feedbackSearchDropdown" [value]="data" >{{data}}</option>          
+        </select>
+      
+        </div> 
+     </div>
+     <br/>
+     <div *ngIf="collections!='Select'"  class="row">
+       <div class="table-responsive">
+          <table  class="table table-bordered table-hover table-condensed">    
+            <thead>        
+              <tr>   
+               <!--<th></th>            -->
+               <th>User Utterance</th>
+               <th>Intent</th>
+                <th *ngIf="intRemapColDisplay">Intent Remapping</th>
+                <th>Entity</th>               
+                <th>Output</th>
+                 <th>Timestamp</th>
+              </tr>  
+            </thead>
+            <tbody>
+              <tr *ngIf="emptyFeed"> 
+                <td >-</td>
+                <td>No Data to display</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>                
+                <td>-</td>
+                <td>-</td>                
+              </tr>
+            
+              <tr *ngFor="let data of feedbackData | searchfilter : searchText"> 
+                <!--<td ><input  type="checkbox" id="ch"  (change)="  setClickedRow(i,data,$event.target.checked );" ></td>-->
+             
+                <td>{{data.input}}</td>
+                <td>{{data.intent}}</td>
+                <td *ngIf="intRemapColDisplay">
+                          <select name="data.ModifiedIntent" [(ngModel)]='data.ModifiedIntent' class='form-control' (ngModelChange)="createModTable(data._id, data.ModifiedIntent)" >
+                             <option value="" >Select</option>
+                             <option *ngFor="let dataI of intents">{{dataI.intent}}</option>
+                          </select>
+                          
+                 </td>
+                <td>{{data.entity}}</td>                
+                <td>{{data.output}}</td>
+                <td>{{data.timestamp}}</td>                
+              </tr>
+              </tbody>
+          </table>
+  </div> 
+    <div class="loader" *ngIf="loaderDisplay"></div>
+</div>
+<div class="row">
+  <div class="col-xs-4">
+               <label class="h4 pageNo">Total Records: {{totalRecords}}&nbsp;&nbsp;&nbsp;Page {{currentIndex}}/{{pageNumber}}</label>
+  </div>
+  <div class="col-xs-4">
+      <div class="btn-group page">
+               <ul class="pagination" >
+                  <li [ngClass]="{'disabled': (currentIndex == 1 || pageNumber == 0)}" ><a  (click)="prevPage()">Prev</a></li>
+                     <li *ngFor="let page of pagesIndex"  [ngClass]="{'active': (currentIndex == page)}">
+                        <a (click)="setPage(page)">{{page}}</a>
+                     </li>
+                  <li [ngClass]="{'disabled': (currentIndex == pageNumber || pageNumber == 0)}" ><a (click)="nextPage()">Next</a></li>
+               </ul>
+            </div>
+  </div>
+  <div class="col-xs-4">
+     <div class="savetraintest">
+      <button type="button" class="btn savebtn" (click)="postSaveCall(databases, feedbackSaveData, collections)" data-toggle="modal" data-target="#saveModal" ><b>SAVE</b></button>
+     <button type="button"  class="btn trainbtn" (click)="postTrainCall(databases)" data-toggle="modal" data-target="#trainModal"><b>TRAIN</b></button>
+      <button type="button" class="btn testbtn" (click)="postTestCall(databases)" data-toggle="modal" data-target="#testModal" ><b>TEST</b></button>  
+        </div>
+  </div>
+</div>
+   <!-- Modal for Save-->
+  <div class="modal fade" id="saveModal" role="dialog" >
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Status Information</h4>
+        </div>
+        <div class="modal-body">
+         
+          <p>{{saveStatus}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+   <!-- Modal for train-->
+  <div class="modal fade" id="trainModal" role="dialog" >
+    <div class="modal-dialog modal-sm">
+      <div *ngIf="trainStatus ==''"></div>
+      <div class="modal-content" *ngIf="trainStatus !=''">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Status Information</h4>
+        </div>
+        <div class="modal-body">
+           
+          <p>{{trainStatus}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal fade" id="testModal" role="dialog" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Test Results</h4>
+        </div>
+        <div class="modal-body">
+         <div class="table-responsive">
+           <table class="table table-bordered table-condensed table-hover">
+             <tr class="primary">
+               <th>Input</th>
+               <th>Previous Intent</th>
+               <th>Present Intent</th>
+             </tr>
+                <tr *ngIf="emptyTest"> 
+                <td>Loading Data ..</td>
+                <td>-</td>
+                <td>-</td>                           
+              </tr>
+             <tr *ngFor="let test of testData">
+               <td>{{test.input}}</td>
+               <td>{{test.previous_intent}}</td>
+               <td>{{test.present_intent}}</td>
+             </tr>
+           </table>
+         </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

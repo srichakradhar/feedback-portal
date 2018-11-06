@@ -1,0 +1,6 @@
+.theme{
+    background: url('assets/images/theme.jpg');
+    height: 87vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
